@@ -6,7 +6,8 @@ interface State {
         userLastname: string,
         userEmail: string
         userToken: string
-    }
+        authenticated: boolean
+    },
 }
 export const useGlobalStore = defineStore('globalStore', {
     persist: true,
@@ -16,12 +17,14 @@ export const useGlobalStore = defineStore('globalStore', {
             userFirstname: '',
             userLastname: '',
             userEmail: '',
-            userToken: ''
+            userToken: '',
+            authenticated: false
         }
     }),
     actions: {
         logIn(payload: any) {
             this.userData = payload
+            this.userData.authenticated = true
         }
     }
 })
